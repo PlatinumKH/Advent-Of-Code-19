@@ -4,9 +4,9 @@ import java.io.FileInputStream;
 public class D5 {
     public static void main(String[] args) {
 
-    	int cases[] = new int[149];
+    	int cases[] = new int[678];
 
-    	readFile(cases, "D2.input");
+    	readFile(cases, "D5.input");
 
     	// We use cases.clone() in part 1, as we do not want to affect the answers for part 2
     	System.out.println("Part 1 answer is: " + part1(cases.clone(), 1));
@@ -55,22 +55,27 @@ public class D5 {
     	return cases[0];
     }
 
-    public static int part2(int cases[]){
+    public static String padZeros(int x){
+        return String.format("%05d", x);
+    }
 
-    	// Simple O^2 solution
+    public static int incVal(int a){
+        switch(a){
+            case 1:
+            case 2:
+            return 4;
+            break;
 
-    	int ans = 19690720;
+            case 3:
+            return 2;
+            break;
 
-    	for (int x = 0; x < 100; x++){
-    		for (int y = 0; y < 100; y++){
-    			try {
-    				if (part1(cases.clone(), x, y) == ans) return (100 * x + y);
-    			} catch (Exception e){
-    				// Try the next loop
-    			}
-    		}
-    	}
+            case 4:
+            return 1;
+            break;
 
-    	return -1;
+            default:
+            throw new IllegalArgumentException("Invalid incVal arg");
+        }
     }
 }
